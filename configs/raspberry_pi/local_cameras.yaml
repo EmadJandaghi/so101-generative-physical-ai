@@ -1,0 +1,18 @@
+# Local cameras config for this workstation. Overrides the shared
+# so101_bringup/config/cameras/so101_cameras.yaml by pointing cam_overhead
+# at a locally-calibrated camera_info YAML.
+#
+# Pass via cameras_config_file:= on any launch that forwards it, e.g.:
+#   ros2 launch so101_bringup follower_vision.launch.py \
+#     cameras_config_file:=$(ros2 pkg prefix so101_pick_place)/share/so101_pick_place/config/cameras/local_cameras.yaml
+cameras:
+  - name: cam_wrist
+    camera_type: gscam
+    param_path: so101_gs_cam.yaml
+    namespace: follower
+
+  - name: cam_overhead
+    camera_type: gscam
+    param_path: so101_gs_cam.yaml
+    namespace: static_camera
+    camera_info_url: "package://so101_pick_place/config/cameras/cam_overhead.yaml"
